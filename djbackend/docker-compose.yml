@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14.5-alpine
+    container_name: db
+    volumes:
+      - ../data/db:/var/lib/postgresql/data:z
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=3210
+
+  web:
+    build: .
+    container_name: backend
+    volumes:
+      - .:/var/www/backend
+      - ./site_config.conf:/etc/apache2/sites-available/000-default.conf
+      - ./start.sh:/var/www/start.sh
+      - ../logs:/var/log/apache2:z
+    ports:
+      - '8000:8000'
+    command: server
+    depends_on:
+      - db

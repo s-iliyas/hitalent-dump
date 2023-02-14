@@ -1,0 +1,14 @@
+__pycache__/
+
+env
+cred.json
+db.sqlite3
+static
+.env
+
+ht_intern/migrations/*
+!ht_intern/migrations/__init__.py
+ht_hr/migrations/*
+!ht_hr/migrations/__init__.py
+ht_admin/migrations/*
+!ht_admin/migrations/__init__.py
